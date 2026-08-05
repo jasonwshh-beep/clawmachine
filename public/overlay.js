@@ -1,8 +1,0 @@
-const socket=io();const $=s=>document.querySelector(s);let state={};
-function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function plush(e,extra=''){return `<div class="plush ${extra}" id="p-${e.id}" style="--plush:${e.color}"><div class="plush-ear left"></div><div class="plush-ear right"></div><div class="plush-body"></div><div class="plush-face">${e.avatarUrl?`<img src="${esc(e.avatarUrl)}" alt="${esc(e.username)}">`:esc(e.initial||'W')}</div><div class="plush-w">W</div><div class="plush-name">${esc(e.username)}</div></div>`}
-function render(s){state=s;$('#plushies').innerHTML=s.entrants.map(plush).join('');$('#deckMessage').textContent=s.drawing?'CLAW IN MOTION':s.entriesOpen?`TYPE ${s.keyword.toUpperCase()} TO ENTER`:'GOOD LUCK!';if(s.winner)showWinner(s.winner)}
-function showWinner(e){const c=$('#winnerCard');c.innerHTML=`${plush(e,'winner-plush')}<small>${esc(state.prize)} WINNER</small><h3>${esc(e.username)}</h3><p>CODE W • SHUFFLE</p>`;c.classList.add('show')}
-socket.on('state',render);
-socket.on('draw:start',({winnerId})=>{$('#winnerCard').classList.remove('show');$('#machine').classList.add('drawing');const idx=state.entrants.findIndex(e=>e.id===winnerId),cols=Math.max(1,Math.floor($('#plushies').clientWidth/80)),x=((idx%cols)+.5)/cols*82+9;$('#claw').style.left=x+'%';setTimeout(()=>{const p=$('#p-'+winnerId);if(p){p.style.transform='translateY(-270px) scale(1.12)';p.style.zIndex='12'}},5000)});
-socket.on('draw:winner',e=>{$('#machine').classList.remove('drawing');showWinner(e)});socket.on('reset',()=>$('#winnerCard').classList.remove('show'));
