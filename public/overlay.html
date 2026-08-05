@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Shuffle Claw Overlay</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="overlay-body">
+  <div class="overlay-stage">
+    <section class="machine overlay-machine" id="machine" aria-label="Shuffle claw giveaway overlay">
+      <header class="machine-header">
+        <div class="header-edge left"></div>
+        <div class="shuffle-wordmark">SHUFFLE <span>× W</span> GIVEAWAY</div>
+        <div class="header-edge right"></div>
+      </header>
+      <div class="machine-body">
+        <div class="glass-panel" id="glassPanel">
+          <div class="glass-highlight"></div><div class="arcade-lights arcade-lights-left"></div><div class="arcade-lights arcade-lights-right"></div>
+          <div class="machine-rail"></div>
+          <div class="claw is-open" id="claw">
+            <div class="claw-cable"></div>
+            <div class="claw-hub"><span>W</span></div>
+            <div class="claw-gripper">
+              <i class="arm arm-left"></i>
+              <i class="arm arm-right"></i>
+            </div>
+            <div class="claw-cargo" id="clawCargo"></div>
+          </div>
+          <div class="ball-pit" id="ballPit"></div>
+          <div class="winner-card" id="winnerCard" aria-live="polite"></div>
+        </div>
+        <div class="machine-footer"><div class="deck-lights"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="keyword-display">
+            <span>TYPE IN CHAT TO ENTER</span>
+            <strong id="deckMessage">!CODEW</strong>
+          </div>
+          <div class="entry-counter"><span>ENTRIES</span><strong id="metricEntries">0</strong></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div hidden>
+    <div id="entryList"></div><div id="chatList"></div><span id="count"></span><span id="status"></span>
+    <span id="metricUnique"></span><span id="latestEntry"></span><span id="entryBadge"></span><span id="kickStatus"></span>
+    <input id="keyword"><input id="prize">
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/overlay.js"></script>
+</body>
+</html>
