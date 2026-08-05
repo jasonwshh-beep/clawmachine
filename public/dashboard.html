@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Shuffle Claw Giveaway</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="dashboard-shell">
+    <aside class="side-panel control-panel">
+      <div class="panel-title-row">
+        <div>
+          <p class="eyebrow">STREAM CONTROL</p>
+          <h1>Claw Giveaway</h1>
+        </div>
+        <span class="status-pill" id="connectionPill"><i></i><span id="kickStatus">Connecting</span></span>
+      </div>
+
+      <div class="control-grid">
+        <button class="button primary" id="open">Start entries</button>
+        <button class="button" id="close">Stop entries</button>
+        <button class="button accent" id="draw">Pick winner</button>
+      </div>
+
+      <section class="panel-section">
+        <div class="section-heading">Giveaway settings</div>
+        <label class="input-group"><span>Keyword</span><input id="keyword" value="!codew"></label>
+        <label class="input-group"><span>Prize</span><input id="prize" value="$200"></label>
+        <button class="button subtle" id="save">Save settings</button>
+      </section>
+
+      <section class="stats-list">
+        <div><span>Entries</span><strong id="count">0</strong></div>
+        <div><span>Giveaway</span><strong id="status">Closed</strong></div>
+        <div><span>Kick channel</span><strong>kick.com/w</strong></div>
+      </section>
+
+      <section class="panel-section">
+        <div class="section-heading">Testing tools</div>
+        <label class="input-group"><span>Manual entrant</span><input id="manual" placeholder="Kick username"></label>
+        <div class="testing-buttons">
+          <button class="button subtle" id="add">Add entry</button>
+          <button class="button subtle" id="demo">Add demo entries</button>
+        </div>
+        <button class="button danger" id="reset">Reset giveaway</button>
+      </section>
+    </aside>
+
+    <main class="center-column">
+      <section class="machine" id="machine" aria-label="Shuffle claw giveaway machine">
+        <header class="machine-header">
+          <div class="header-edge left"></div>
+          <div class="shuffle-wordmark">SHUFFLE</div>
+          <div class="header-edge right"></div>
+        </header>
+
+        <div class="machine-body">
+          <div class="glass-panel" id="glassPanel">
+            <div class="glass-highlight"></div>
+            <div class="machine-rail"></div>
+            <div class="claw is-open" id="claw">
+              <div class="claw-cable"></div>
+              <div class="claw-hub"><span>W</span></div>
+              <div class="claw-gripper">
+                <i class="arm arm-left"></i>
+                <i class="arm arm-center"></i>
+                <i class="arm arm-right"></i>
+              </div>
+              <div class="claw-cargo" id="clawCargo"></div>
+            </div>
+            <div class="ball-pit" id="ballPit"></div>
+            <div class="winner-card" id="winnerCard" aria-live="polite"></div>
+          </div>
+
+          <div class="machine-footer">
+            <div class="keyword-display">
+              <span>KEYWORD</span>
+              <strong id="deckMessage">!CODEW</strong>
+            </div>
+            <button class="machine-button" type="button" id="drawDeck">PICK WINNER</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="metric-row">
+        <article><span>Total entries</span><strong id="metricEntries">0</strong></article>
+        <article><span>Unique users</span><strong id="metricUnique">0</strong></article>
+        <article><span>Latest entry</span><strong id="latestEntry">—</strong></article>
+      </div>
+    </main>
+
+    <aside class="right-column">
+      <section class="side-panel entries-panel">
+        <div class="list-heading"><span>Live entries</span><b id="entryBadge">0</b></div>
+        <div class="entry-list" id="entryList"></div>
+      </section>
+      <section class="side-panel chat-panel">
+        <div class="list-heading"><span>Live chat</span><b>W</b></div>
+        <div class="chat-list" id="chatList"><div class="empty-state">Waiting for kick.com/w chat…</div></div>
+      </section>
+    </aside>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
